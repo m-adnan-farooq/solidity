@@ -1,5 +1,6 @@
 pragma solidity^0.6.0;
 
+//Rule 5 - Assignment - Copy Behaviour
 contract First{
     
     int public var1 = 10; 
