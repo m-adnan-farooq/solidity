@@ -21,7 +21,10 @@ contract AdnanToken is IERC20{
     
     //Capping for total tokens
     uint256 private _tokenCap;
-    
+
+    //Time of contract
+    uint256 private today;
+        
     //owner
     address public owner;
     
@@ -164,6 +167,7 @@ contract AdnanToken is IERC20{
     function mint(uint256 amount) public onlyOwner returns(uint256){
         require(amount > 0,"A-Coin: Invalid Amount. Minted amount should be greater than 0");
         require(amount <= (_tokenCap - _totalSupply), "A-Coin: Invalid Amount. Minted amount is greated than amount allowed");
+        require(block.timestamp >= today + 15 days,"A-Coin: transfer before lapse of 15days is not allowed");
         _balances[owner] = _balances[owner].add(amount);
         _totalSupply = _totalSupply + amount;
         
